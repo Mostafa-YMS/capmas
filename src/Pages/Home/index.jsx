@@ -2,6 +2,7 @@ import { Box, Container } from "@mui/material";
 import HomeDate from "./components/HomeDate";
 import { useCallback, useEffect, useState } from "react";
 import BirthTypeTabs from "./components/BirthTypeTabs";
+import BirthNumbers from "./components/BirthNumbers";
 import { getBirthNumbersAction } from "../../store/actions/birthNumbers";
 import { useDispatch } from "react-redux";
 
@@ -47,6 +48,8 @@ const Home = () => {
             />
             <BirthTypeTabs value={birthType} onChange={changeBirthType} />
           </Box>
+
+          <BirthNumbers />
         </Container>
       </Box>
     </>
