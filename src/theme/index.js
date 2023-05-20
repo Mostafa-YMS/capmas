@@ -23,6 +23,7 @@ const getDesignTokens = (mode) => ({
       primary: "#000000",
       secondary: "#FCFCFC",
       white: "#fff",
+      grey: "#7d7d94",
     },
     background: {
       default: "#fff",
