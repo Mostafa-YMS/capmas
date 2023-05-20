@@ -101,7 +101,7 @@ const SideBar = ({ mobileOpen, handleDrawerToggle, window }) => {
       <Box
         sx={{
           display: { xs: "none", sm: "block" },
-          pt: 2,
+          pt: 3,
           boxShadow: "0px 0px 10px #2020200D",
         }}
       >
