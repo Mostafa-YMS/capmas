@@ -1,12 +1,24 @@
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import HomeDate from "./components/HomeDate";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import BirthTypeTabs from "./components/BirthTypeTabs";
+import { getBirthNumbersAction } from "../../store/actions/birthNumbers";
+import { useDispatch } from "react-redux";
 
 const Home = () => {
+  const dispatch = useDispatch();
+
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [birthType, setBirthType] = useState("all");
+
+  const fetchBirthNumbers = useCallback(() => {
+    getBirthNumbersAction({ startDate, endDate, birthType })(dispatch);
+  }, [startDate, endDate, birthType, dispatch]);
+
+  useEffect(() => {
+    fetchBirthNumbers && fetchBirthNumbers();
+  }, [fetchBirthNumbers]);
 
   const changeDate = useCallback((dates) => {
     const [start, end] = dates;
@@ -23,18 +35,19 @@ const Home = () => {
           height: 1,
           backgroundColor: "background.main",
           mt: 12,
-          px: 3,
           py: 5,
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <HomeDate
-            startDate={startDate}
-            endDate={endDate}
-            onChange={changeDate}
-          />
-          <BirthTypeTabs value={birthType} onChange={changeBirthType} />
-        </Box>
+        <Container maxWidth="xl">
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <HomeDate
+              startDate={startDate}
+              endDate={endDate}
+              onChange={changeDate}
+            />
+            <BirthTypeTabs value={birthType} onChange={changeBirthType} />
+          </Box>
+        </Container>
       </Box>
     </>
   );
